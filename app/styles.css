@@ -8,3 +8,6 @@ button.active { background: #315eff; color: #fff; }
 input, textarea { width: 100%; box-sizing: border-box; margin-bottom: .5rem; border: 1px solid #c9d5e8; border-radius: 8px; padding: .45rem; }
 textarea { min-height: 90px; }
 audio { display: block; margin: .5rem 0; }
+.status { color: #315eff; font-weight: 600; }
+.inline-upload { display: inline-flex; gap: .4rem; align-items: center; border: 1px solid #ccd7ea; border-radius: 8px; padding: .45rem .7rem; }
+.inline-upload input { margin: 0; width: auto; }

@@ -1,15 +1,21 @@
-const test = require('node:test');
-const assert = require('node:assert/strict');
-const { generateSummary, generateFlashcards } = require('../app/ai.js');
+# Cognify (v0.2.0)
 
-const sample = 'Force equals mass times acceleration. This law explains motion changes under net force. Energy is conserved in a closed system.';
+Cognify is a personal study web app for Physics, Algebra, and Geometry.
 
-test('generateSummary returns numbered lines', () => {
-  const summary = generateSummary(sample);
-  assert.match(summary, /1\./);
-});
+## Features in v0.2.0
+- Subject workspaces (Physics, Algebra, Geometry)
+- Full create/delete flows for notes, cards, and materials
+- Study mode with simple spaced repetition (Again/Hard/Good/Easy)
+- Materials upload and class recording capture button
+- AI helper generation from single material or all materials
+- PDF/noisy text cleanup before AI generation
+- Weekly goals, due counts, and collection stats
+- Backup export/import as JSON
 
-test('generateFlashcards returns cards', () => {
-  const cards = generateFlashcards(sample);
-  assert.ok(cards.length > 0);
-});
+## Run
+```bash
+npm test
+npm run start
+```
+
+Then open `http://localhost:4173/app/`.

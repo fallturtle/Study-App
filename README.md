@@ -1,15 +1,16 @@
-# Cognify (v0.1.0)
+# Cognify (v0.2.0)
 
 Cognify is a personal study web app for Physics, Algebra, and Geometry.
 
-## Features in v0.1.0
+## Features in v0.2.0
 - Subject workspaces (Physics, Algebra, Geometry)
-- Notes and flashcard creation
+- Full create/delete flows for notes, cards, and materials
 - Study mode with simple spaced repetition (Again/Hard/Good/Easy)
 - Materials upload and class recording capture button
-- AI helper generation (summary + starter flashcards) from uploaded text
-- Weekly goals (minutes + cards)
-- Project memory file for standing rules and versioning
+- AI helper generation from single material or all materials
+- PDF/noisy text cleanup before AI generation
+- Weekly goals, due counts, and collection stats
+- Backup export/import as JSON
 
 ## Run
 ```bash

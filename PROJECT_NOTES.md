@@ -12,4 +12,4 @@
 - Release: major milestone.
 
 ## Current scope baseline
-- v0.1.0: foundation MVP with subject workspaces, notes, cards, study loop, materials, basic AI helper generation, weekly goals.
+- v0.2.0: stronger one-shot package with improved CRUD/deletion, AI generation from combined materials, backup import/export, progress metrics, and PDF/noise cleanup.
