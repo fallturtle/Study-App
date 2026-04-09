@@ -1,0 +1,10 @@
+:root { font-family: Inter, system-ui, sans-serif; color: #111; background: #f4f7fb; }
+body { margin: 0; }
+.app { max-width: 920px; margin: 0 auto; padding: 1rem; }
+.panel { background: #fff; border: 1px solid #dbe3ef; border-radius: 12px; padding: 1rem; }
+.row { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: .75rem; }
+button { border: 1px solid #ccd7ea; background: #fff; border-radius: 8px; padding: .45rem .7rem; cursor: pointer; }
+button.active { background: #315eff; color: #fff; }
+input, textarea { width: 100%; box-sizing: border-box; margin-bottom: .5rem; border: 1px solid #c9d5e8; border-radius: 8px; padding: .45rem; }
+textarea { min-height: 90px; }
+audio { display: block; margin: .5rem 0; }
