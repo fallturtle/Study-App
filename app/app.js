@@ -1,5 +1,53 @@
-const { updateCardReview, dueCards } = require('./scheduler.js');
-const { generateSummary, generateFlashcards } = require('./ai.js');
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+const intervals = {
+  Again: 1,
+  Hard: 2,
+  Good: 4,
+  Easy: 7
+};
+
+function updateCardReview(card, grade, now = new Date()) {
+  const base = intervals[grade] ?? 1;
+  const nextInterval = grade === 'Again' ? 1 : Math.max(base, Math.round(card.interval * 1.4));
+  return {
+    ...card,
+    interval: nextInterval,
+    repetition: grade === 'Again' ? 0 : card.repetition + 1,
+    dueDate: new Date(now.getTime() + nextInterval * DAY_MS).toISOString()
+  };
+}
+
+function dueCards(cards, now = new Date()) {
+  return cards.filter((card) => new Date(card.dueDate).getTime() <= now.getTime());
+}
+
+function splitSentences(text) {
+  return text
+    .split(/[.!?]\s+/)
+    .map((line) => line.trim())
+    .filter((line) => line.length > 20);
+}
+
+function generateSummary(text) {
+  const lines = splitSentences(text).slice(0, 6);
+  if (lines.length === 0) {
+    return 'No useful text was found. Upload clearer notes or a cleaner transcript.';
+  }
+  return lines.map((line, index) => `${index + 1}. ${line}`).join('\n');
+}
+
+function generateFlashcards(text) {
+  const lines = splitSentences(text).slice(0, 8);
+  return lines.map((line, index) => ({
+    id: `ai-${Date.now()}-${index}`,
+    question: `Explain this idea: ${line.slice(0, 80)}?`,
+    answer: line,
+    interval: 1,
+    dueDate: new Date().toISOString(),
+    repetition: 0
+  }));
+}
 
 const SUBJECTS = ['Physics', 'Algebra', 'Geometry'];
 const STORAGE_KEY = 'cognify-data-v0.1.0';
@@ -227,10 +275,11 @@ function render() {
   if (goalsBtn) goalsBtn.addEventListener('click', updateGoals);
 
   const revealBtn = document.getElementById('reveal');
-  if (revealBtn) revealBtn.addEventListener('click', () => {
-    state.showAnswer = true;
-    render();
-  });
+  if (revealBtn)
+    revealBtn.addEventListener('click', () => {
+      state.showAnswer = true;
+      render();
+    });
 }
 
 function renderTab(tab, current, due) {
